@@ -36,7 +36,20 @@ int main(){
     }
 
     signal(SIGINT, sigint_handler);
-
+	
+	
+	
+    // TIMER
+    clock_t = door_opened_at_time;
+    if (door_get_status()==1){
+	door_opened_at_time = clock();	
+	break; 					// forsøk på at den ikke skal byne å telle på nytt hele tiden døra er åpen
+    }
+	    
+	    
+	    
+	    
+    
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
 
@@ -111,6 +124,11 @@ int main(){
             hardware_command_stop_light(0);
         }
     }
+	
+    if (time() - door_opened_at_time > 3){
+	    door_close();
+    }
+	
 
     return 0;
 }
